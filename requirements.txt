@@ -1,0 +1,13 @@
+1. Webpack - To add modularity, to control dependancies and many more.
+    1. Babel
+    2. SCSS
+    3. Eslint - to keep our code clean
+    4. 2 Modes
+        1. Dev
+            - Dev server, SourceMaps, Eslint, non-minified JS and CSS
+        2. Prod
+            - Completely opposite of Dev mode.
+2. Git
+    1. Production
+    2. Development
+        - 1.0.2
