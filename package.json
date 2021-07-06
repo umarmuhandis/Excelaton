@@ -1,0 +1,27 @@
+{
+  "name": "excel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^5.42.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "scripts": {
+    "start": "webpack --mode=development",
+    "build": "webpack --mode=build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umarmuhandis/excel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umarmuhandis/excel/issues"
+  },
+  "homepage": "https://github.com/umarmuhandis/excel#readme",
+  "private": true
+}
