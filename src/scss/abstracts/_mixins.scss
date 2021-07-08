@@ -1,0 +1,96 @@
+@mixin baElements ($w, $h) {
+    content: "";
+    display: inline-block;
+    width: $w;
+    height: $h;
+}
+
+@mixin baImages ($w, $h, $url) {
+    @include baElements($w, $h);
+
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+@mixin button($color: green) {
+    display: inline-block;
+    min-width: 2.4rem;
+    min-height: 2.4rem;
+    border-radius: 5px;
+    padding: .3rem;
+    color: rgba(0, 0, 0, .7);
+
+    & i {
+        font-size: 1.8rem;
+    }
+
+    &:active,
+    &.active {
+        color: $color;
+    }
+
+    &:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+}
+
+
+@mixin clear-list() {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1920]   our normal styles apply
+1920px + :      Big desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+    @if $breakpoint==phone {
+        @media only screen and (max-width: 37.5em) {
+            @content
+        }
+
+        ; //600px
+    }
+
+    @if $breakpoint==tab-port {
+        @media only screen and (max-width: 56.25em) {
+            @content
+        }
+
+        ; //900px
+    }
+
+    @if $breakpoint==tab-land {
+        @media only screen and (max-width: 75em) {
+            @content
+        }
+
+        ; //1200px
+    }
+
+    @if $breakpoint==big-desktop {
+        @media only screen and (min-width: 120em) {
+            @content
+        }
+
+        ; //1920
+    }
+}

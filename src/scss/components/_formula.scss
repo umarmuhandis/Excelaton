@@ -1,0 +1,29 @@
+.formula {
+  position: absolute;
+  top: $header-height + $toolbar-height;
+  left: 0;
+  right: 0;
+
+  height: $formula-height;
+  border-bottom: 1px solid $border-color;
+
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    font-size: 1.8rem;
+    text-align: center;
+    font-style: italic;
+    border-right: 1px solid $border-color;
+    padding-right: .5rem;
+  }
+
+  &__input {
+    outline: none;
+    height: 100%;
+    flex-basis: 100%;
+    color: #000;
+    font-size: 1.2rem;
+    padding: .4rem;
+  }
+}

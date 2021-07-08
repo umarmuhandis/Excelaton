@@ -1,0 +1,34 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  height: $header-height;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .input {
+    display: inline-block;
+    padding: .7rem 1.5rem;
+    outline: none;
+    color: #7f8c8d;
+    font-size: 1.6rem;
+    border-radius: .5rem;
+    border: 2px solid transparent;
+
+    &:hover {
+      border-color: $border-color;
+    }
+
+    &:focus {
+      border: 2px solid #3498db;
+    }
+  }
+
+  .button {
+    display: inline-block;
+    @include button(red);
+  }
+}
