@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
     ];
 
     if (isDev) {
-      base.push(new ESLintPlugin(base));
+      base.push(new ESLintPlugin());
     }
 
     return base;
@@ -53,30 +53,31 @@ module.exports = (env, argv) => {
     },
     target: 'web',
     devServer: {
-      port: '5050',
-      hot: true,
-      // watchContentBase: true
+      port: '3000',
+      hot: isDev,
+      open: true
+      // watchContentBase: isDev
     },
     plugins: plugins(),
     module: {
       rules: [{
-        test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
+          test: /\.s[ac]ss$/i,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'sass-loader',
+          ],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            },
           },
         },
-      },
       ],
     },
     devtool: isDev ? 'source-map' : false,
