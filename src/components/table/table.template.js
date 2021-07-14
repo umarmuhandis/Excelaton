@@ -3,23 +3,35 @@ const CODES = {
   Z: 90
 }
 
-const createCell = (cellData = '') => {
+const createCell = (cellData = '', index) => {
   return `
-    <div class="cell" contenteditable="">${cellData}</div>
+    <div class="cell" contenteditable="" data-cell-index='${index}'>
+      ${cellData}
+    </div>
   `
 }
 
-const createCol = (colData) => {
+const createCol = (colData, index) => {
   return `
-    <div class="column">
+    <div class="column" data-resizable="column" data-col-index="${index}">
       ${colData}
+      <div class="resize resize--column" data-resize="col">
+        <div class="resize__line resize__line--column"></div>
+      </div>
     </div>`
 }
 
 const createRow = (rowInfo, rowData = '') => {
   return `
-    <div class = "row">
-      <div class = "row-info">${rowInfo}</div>
+    <div class = "row" data-resizable="row">
+      <div class = "row-info">
+        ${rowInfo}
+        ${rowInfo ?
+          `<div class="resize resize--row" data-resize="row">
+             <div class="resize__line resize__line--row"></div>
+           </div>` :
+          ''}
+      </div>
       <div class = "row-data">${rowData}</div>
     </div>
   `
@@ -40,15 +52,13 @@ export const createTable = (rowsCount = 15) => {
   const colsCount = CODES.Z - CODES.A + 1;
 
   const cols = arrayGenerator(colsCount)
-      .map((_, index) => createCol(toChar(index)))
+      .map((_, index) => createCol(toChar(index), index))
       .join('');
-
-
   rows.push(createRow('', cols));
 
   for (let lineIndex = 0; lineIndex < rowsCount; lineIndex++) {
     const cells = arrayGenerator(colsCount)
-        .map((_) => createCell())
+        .map((_, i) => createCell('', i))
         .join('')
     rows.push(createRow(lineIndex + 1, cells));
   }
