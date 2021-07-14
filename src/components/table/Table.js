@@ -1,6 +1,7 @@
 import ExcelComponent from '../../core/ExcelComponent';
 import resize from './table.resize';
 import {createTable} from './table.template'
+import {shouldResize} from './table.utils';
 
 export default class Table extends ExcelComponent {
   static className = 'table'
@@ -17,13 +18,8 @@ export default class Table extends ExcelComponent {
   }
 
   onMousedown(e) {
-    resize(e, this);
+    if (shouldResize(e)) {
+      resize(e, this.$root);
+    }
   }
 }
-
-
-// 129 ms  Scripting
-// 679 ms  Rendering
-
-// 41 ms  Scripting
-// 378 ms  Rendering
