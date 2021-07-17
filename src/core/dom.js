@@ -13,6 +13,14 @@ class Dom {
     return this.$el;
   }
 
+  get text() {
+    return this.$el.textContent;
+  }
+
+  set text(text) {
+    this.$el.textContent = text.trim('');
+  }
+
   clear() {
     this.$el = '';
     return this;
@@ -36,6 +44,65 @@ class Dom {
 
   off(event, callbackFn) {
     this.$el.removeEventListener(event, callbackFn);
+  }
+
+  closest(element) {
+    return $(this.$el.closest(element));
+  }
+
+  getCoords() {
+    return this.$el.getBoundingClientRect();
+  }
+
+
+  get dataset() {
+    return this.$el.dataset;
+  }
+
+  get style() {
+    return this.$el.style;
+  }
+
+  css(styles = {}) {
+    return Object.assign(this.$el.style, styles)
+  }
+  querySelector(selector) {
+    return $(this.$el.querySelector(selector));
+  }
+
+  querySelectorAll(selector) {
+    return $(this.$el.querySelectorAll(selector));
+  }
+
+  forEach(callbackFn) {
+    this.$el.forEach(callbackFn);
+  }
+
+  addClass(className) {
+    this.$el.classList.add(className);
+  }
+
+  removeClass(className) {
+    this.$el.classList.remove(className);
+  }
+
+  id(parse) {
+    if (parse) {
+      const parsed = this.id().split(':');
+      return {
+        col: +parsed[0],
+        row: +parsed[1]
+      }
+    }
+    return this.$el.dataset.id;
+  }
+
+  get uncleElement() {
+    return $(this.$el.parentElement.previousElementSibling);
+  }
+
+  focus() {
+    this.$el.focus();
   }
 }
 

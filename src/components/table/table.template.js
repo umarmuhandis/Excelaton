@@ -3,12 +3,18 @@ const CODES = {
   Z: 90
 }
 
-const createCell = (cellData = '', index) => {
-  return `
-    <div class="cell" contenteditable="" data-cell-index='${index}'>
-      ${cellData}
-    </div>
-  `
+const createCell = (rowIndex) => {
+  return (_, colIndex) => {
+    return `
+      <div class="cell" 
+           contenteditable="" 
+           data-type="cell"
+           data-id='${colIndex}:${rowIndex}' 
+           data-col='${colIndex}'>
+          111
+      </div>
+    `
+  }
 }
 
 const createCol = (colData, index) => {
@@ -51,16 +57,18 @@ export const createTable = (rowsCount = 15) => {
   const rows = [];
   const colsCount = CODES.Z - CODES.A + 1;
 
-  const cols = arrayGenerator(colsCount)
-      .map((_, index) => createCol(toChar(index), index))
-      .join('');
+  const cols =
+        arrayGenerator(colsCount)
+            .map((_, index) => createCol(toChar(index), index))
+            .join('');
   rows.push(createRow('', cols));
 
-  for (let lineIndex = 0; lineIndex < rowsCount; lineIndex++) {
+  for (let rowIndex = 0; rowIndex < rowsCount; rowIndex++) {
     const cells = arrayGenerator(colsCount)
-        .map((_, i) => createCell('', i))
+        // .map((_, colIndex) => createCell(rowIndex, colIndex))
+        .map(createCell(rowIndex))
         .join('')
-    rows.push(createRow(lineIndex + 1, cells));
+    rows.push(createRow(rowIndex + 1, cells));
   }
 
   return rows.join('');

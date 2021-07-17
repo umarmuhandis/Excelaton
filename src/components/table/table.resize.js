@@ -8,7 +8,7 @@ const resize = (e, $root) => {
   const $resizerLine = $resizer.querySelector('.resize__line');
   const $parent = $resizer.closest('[data-resizable]');
   const coords = $parent.getCoords();
-  const tableCoords = $parent.closest('.table').getCoords();
+  const tableCoords = $root.getCoords();
 
   let cells;
   let finalWidth;
@@ -18,7 +18,7 @@ const resize = (e, $root) => {
     $resizerLine.css({height: `${tableCoords.height - tableCoords.top}px`})
     const colIndex = $parent.dataset.colIndex;
     cells = $root
-        .querySelectorAll(`div[data-cell-index="${colIndex}"]`);
+        .querySelectorAll(`div[data-col="${colIndex}"]`);
   }
 
   if (isRowResize) {

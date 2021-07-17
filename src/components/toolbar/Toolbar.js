@@ -3,10 +3,11 @@ import ExcelComponent from '../../core/ExcelComponent';
 export default class Toolbar extends ExcelComponent {
   static className = 'toolbar';
 
-  constructor(el) {
+  constructor(el, options) {
     super(el, {
       name: 'Toolbar',
-      listeners: ['click']
+      listeners: ['click'],
+      emitter: options.emitter
     })
   }
 

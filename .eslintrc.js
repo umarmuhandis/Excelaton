@@ -18,6 +18,6 @@ module.exports = {
     'semi': 'off',
     'comma-dangle': 'off',
     'require-jsdoc': 'off',
-    'linebreak-style': 'off'
+    'linebreak-style': 'off',
   }
 };
