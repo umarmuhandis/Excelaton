@@ -9,7 +9,7 @@
   .row {
     display: flex;
     flex-direction: row;
-    min-height: 20px;
+    min-height: 2rem;
     height: $row-height;
   }
 
@@ -22,6 +22,7 @@
     border: 1px solid $border-color;
     background: #f8f9fa;
     border-top: none;
+    position: relative;
   }
 
   .row-data {
@@ -33,16 +34,27 @@
     justify-content: center;
     align-items: center;
     background: #f8f9fa;
-    min-width: 40px;
+    min-width: 4rem;
     width: $cell-width;
     border: 1px solid $border-color;
     border-top: 0;
     border-left: 0;
     height: 100%;
+    position: relative;
+  }
+
+  .row-info.selected,
+  .column.selected {
+    background-color: #e8eaed;
+  }
+
+  .row,
+  .column {
+    user-select: none;
   }
 
   .cell {
-    min-width: 40px;
+    min-width: 4rem;
     padding: 5px;
     width: $cell-width;
     height: 100%;
@@ -52,11 +64,12 @@
     color: #111;
     white-space: nowrap;
     outline: none;
-
+    caret-color: transparent;
 
     &.selected {
-      border: none;
-      outline: 2px solid #3c74ff;
+      // border: none;
+      caret-color: unset;
+      border: 2px solid $color-primary;
       z-index: 2;
     }
   }
