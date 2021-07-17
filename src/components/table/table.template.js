@@ -11,7 +11,6 @@ const createCell = (rowIndex) => {
            data-type="cell"
            data-id='${colIndex}:${rowIndex}' 
            data-col='${colIndex}'>
-          111
       </div>
     `
   }
